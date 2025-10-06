@@ -1,0 +1,26 @@
+[
+    {
+        "date": "2025-10-02",
+        "category": "personal",
+        "amount": 5000.0,
+        "description": "home need's"
+    },
+    {
+        "date": "2005-08-26",
+        "category": "Brithday",
+        "amount": 5000.0,
+        "description": "celebration"
+    },
+    {
+        "date": "2005-12-24",
+        "category": "Brithday",
+        "amount": 5000.0,
+        "description": "celebration"
+    },
+    {
+        "date": "2025-10-06",
+        "category": "travel",
+        "amount": 200.0,
+        "description": "travel"
+    }
+]

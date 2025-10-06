@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ByteBank</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>ByteBank</h1>
+
+<a href="{{ url_for('add') }}">Add New Expense</a>
+
+<form method="GET" action="{{ url_for('index') }}">
+    <label>Filter by Category:</label>
+    <select name="filter_cat">
+        <option value="">Show All</option>
+        {% for cat in categories %}
+            <option value="{{ cat }}" {% if filter_cat == cat %}selected{% endif %}>{{ cat }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<h2>All Expenses</h2>
+{% if expenses %}
+<table>
+    <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    {% for expense in expenses %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ expense.date }}</td>
+        <td>{{ expense.category }}</td>
+        <td>{{ '{:.2f}'.format(expense.amount) }}</td>
+        <td>{{ expense.description }}</td>
+        <td>
+            <a href="{{ url_for('edit', expense_id=expense.id) }}">Edit</a> |
+            <a href="{{ url_for('delete', expense_id=expense.id) }}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No expenses recorded yet.</p>
+{% endif %}
+
+<h3>Summary</h3>
+<p>Total Expenses: {{ '{:.2f}'.format(total) }}</p>
+<p>By Category:</p>
+<ul>
+    {% for category, amount in category_summary.items() %}
+    <li>{{ category }}: {{ '{:.2f}'.format(amount) }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

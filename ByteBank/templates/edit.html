@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Expense - ByteBank</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Edit Expense</h1>
+<form method="POST">
+    <label>Date:</label><br>
+    <input type="date" name="date" value="{{ expense.date }}" required><br><br>
+    
+    <label>Category:</label><br>
+    <input type="text" name="category" value="{{ expense.category }}" required><br><br>
+    
+    <label>Amount:</label><br>
+    <input type="number" step="0.01" name="amount" value="{{ expense.amount }}" required><br><br>
+    
+    <label>Description:</label><br>
+    <textarea name="description">{{ expense.description }}</textarea><br><br>
+    
+    <button type="submit">Update Expense</button>
+</form>
+<a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
